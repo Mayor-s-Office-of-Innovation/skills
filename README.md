@@ -22,3 +22,7 @@ cp -R web-dev /path/to/project/.claude/skills/
 Restart Claude Code (or start a new session) so it picks up the skill. Invoke it by name (e.g. `/web-dev`, `/dashboard-review`) or let Claude trigger it automatically from the `description`.
 
 > These directories are **copies** of the maintainer's active `~/.claude/skills/`; re-copy after edits to keep them in sync.
+
+## License
+
+[MIT](LICENSE) © City and County of San Francisco
