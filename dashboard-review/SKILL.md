@@ -12,7 +12,7 @@ Harden an already-built data visualization before it is shared. The goal is a da
 
 ## Operating model
 
-1. **Inventory first.** Enumerate every card/panel, every figure shown, every claim/headline, and every source link. You can't audit what you haven't listed.
+1. **Inventory first.** Enumerate every card/panel, every figure shown, every claim/headline, and every source link — and **flag every figure that has no source link** (that gap is itself a finding; see Dimension 4). You can't audit what you haven't listed.
 2. **Audit across the dimensions below**, gathering findings — don't fix yet.
 3. **Produce a severity-ranked findings doc** (see *Output*), each finding with: location, the problem, why it matters, and a proposed change. Rank by severity (accuracy > clarity), and within that by how badly it misleads.
 4. **Discuss, then apply on confirmation.** Accuracy changes are high-stakes and often judgment calls — present findings and let the user decide. Do **not** silently rewrite numbers or claims. (Mechanical, unambiguous fixes like a dead link can be batched once confirmed.)
@@ -42,10 +42,11 @@ Scale effort to the ask: a quick "is this clear?" gets the high-confidence findi
 - **Cross-check the same metric everywhere it appears** — flag a value that differs between cards, between the dashboard and its spec, or between a figure and a footnote.
 - For **live/changing data**, require an "as of <date>" and name the dataset + id.
 
-### 4. Source-link hygiene (bidirectional)
-- **Every shown figure has a working, resolvable source link.** No local/relative file links that break when published; no links to files you can't redistribute.
-- **No link should dangle a figure that isn't shown** — if you remove a stat, fix or remove the source label that cited it.
-- Links open safely (new tab, `rel="noopener"`), and the source label says *what* it sources.
+### 4. Source-link coverage & hygiene  *(verifiability is a core deliverable)*
+- **Every figure a skeptic might doubt exposes its own source link — to the *reader*, in the published view.** A figure with no way to check it is a finding in itself. **Default fix: ADD the link, don't cut the figure** — the bias-toward-removal default does *not* apply here. Reviewer-side verification (Dimension 1) is necessary but **not sufficient**: "I traced it to source" is not the same as "the reader can."
+- **Gold standard — round-trip verifiability.** The link runs a live query that returns *the displayed number* (click "129,354" → the query returns 129,354). Freeze the exact window/filters into the URL so the count matches and doesn't drift. For derived or estimated figures that no single query reproduces, link to the **method** that produced them and label them as derived — don't fake an exact-match link.
+- **Working & resolvable.** No local/relative file links that break when published; no links to files you can't redistribute; links open safely (new tab, `rel="noopener"`) and the label says *what* they source.
+- **No dangling links (the other direction).** If you remove a stat, fix or remove the source label that cited it — and never leave a source link pointing at a figure that isn't shown.
 
 ### 5. Chart-type & encoding honesty
 - **Match the visual to the data.** Pie/stacked charts imply a clean partition — wrong for overlapping attributes. Funnels imply nested subsets — only valid for true subsets. 
