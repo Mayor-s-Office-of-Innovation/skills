@@ -51,11 +51,13 @@ These are the user's standing preferences for **all** web work. Apply them by de
 - **Don't run package-install commands yourself.** The user runs `npm install` / `npm i <pkg>` themselves — **print the exact command** and wait for them to run it before continuing.
 
 ## 8. Static sites
-- When a static-site generator is warranted, use **11ty (Eleventy)**. (Astro is also fine per §3 if a component-driven build is wanted.)
+- Choose static site architecture whenever possible to avoid complexity. When a static-site generator is warranted, use **11ty (Eleventy)**. (Astro is also fine per §3 if a component-driven build is wanted.)
 
 ## 9. Hosting & deployment
-- Host on **GitHub Pages**.
-- Deploy via a **GitHub Actions** workflow (build → publish to Pages). Set this up as part of the work, don't leave deployment manual.
+- If your project is simple and static host on **GitHub Pages**.
+- Deploy via a **GitHub Actions** workflow (build → publish to Pages).
+- If your project is not static and won't work on github pages use AWS.
+- Your deployment infrastructure should live as code in your repo so it can run automatically and changes are tracked
 
 ## 10. Backend / data (only when actually needed)
 - Default to **static / client-side** — add a backend only when the task truly requires server-side logic or persistence.
