@@ -10,6 +10,18 @@ Web development stack & standards — lightweight, Core-Web-Vitals-first, and ac
 
 Audit an *already-built* data dashboard or visualization for accuracy, source integrity, denominator/population conflation, presentation simplicity, and neutral tone. Produces a severity-ranked findings doc and applies fixes only on confirmation. Run it *after* a dashboard exists (use `web-dev` to build one).
 
+## [write-path-review](write-path-review/SKILL.md)
+
+Check any change that creates, updates, deletes, imports, syncs, or migrates data for silent data-loss risks: overwrites, double-submits, half-finished writes, two users at once, unrecoverable deletes, unsafe migrations. Runs as a short brief *before* building and a findings doc *before* the PR. Every finding is a plain-language question the feature owner can answer.
+
+## [exposure-review](exposure-review/SKILL.md)
+
+High-level check of any change that adds something the outside world can reach (page, route, endpoint, form, upload, login/role change, new personal data) for who can reach it, what they can do, what they can see that isn't theirs, and what abuse would cost. Same brief-then-review shape as `write-path-review`. Stays high level by design; pair it with lower-level security tooling.
+
+## Why the review skills exist
+
+Feature PRs from AI-assisted work often demo fine and read correctly line by line, yet lose data through the write *flow* or open a surface to people who should never reach it. Neither is visible in a demo. These skills make the agent ask the right question at the right time, in words a non-engineer can answer, and route high-risk changes to a technical reviewer. The [sample AGENTS.md](samples/AGENTS.md) shows how to make them mandatory in a project.
+
 ## Installing a skill
 
 Copy (or symlink) the skill directory into your Claude Code skills folder:
