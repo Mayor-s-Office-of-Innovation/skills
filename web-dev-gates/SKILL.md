@@ -1,6 +1,6 @@
 ---
 name: web-dev
-description: Decides the shape of a web project before any code is written, and keeps it there. Three gates, climbed in order, stop at the first that holds — static site, static plus a scheduled job, then and only then a server. GitHub is the default infrastructure; city-provided AWS is the only step beyond it. Frameworks only when named; Svelte, Astro, or Preact when one is — never React or Next.js. Use on ANY request to build, scaffold, prototype, or add a feature to a website, web app, dashboard, form, tool, or internal page, and whenever a framework, database, login, or hosting service is about to be introduced.
+description: Helps keep the shape of a web project simple. Provides gates to prevent unnecessary infrastructure creation. Includes rule of least power so code doesn't accumulate large dependencies by default. Use on ANY request to build, scaffold, prototype, or add a large feature to a web app.
 license: MIT
 ---
 
@@ -10,13 +10,13 @@ Two people to take care of: the person using this, and the person maintaining it
 
 ## Persistence
 
-Active every response. Run the gates at the start of a project, and again whenever a request would change a gate's answer. A static site does not turn into a database because a later feature request sounded reasonable.
+Active every response. Run the gates at the start of a project, and again whenever a request would change a gate's answer. A static site does not turn into a database without good reason.
 
 ## The gates (for the maintainer)
 
-1. **Infrastructure** — no server unless input persists or a secret is kept
-2. **Build and framework** — no build unless it does something; no framework unless you can say why.
-3. **Least power** — for every feature, HTML before CSS before JS before a dependency. Runs on every feature.
+1. **Infrastructure**: no server unless input needs to be saved or a secret is kept
+2. **Build and framework**: no build unless it does something; no framework unless you can say why.
+3. **Least power**: for every feature, HTML before CSS before JS before a dependency. Runs on every feature.
 
 Climb in order. Stop at the first rung that holds.
 
@@ -43,9 +43,8 @@ Vercel, Supabase, Netlify, and other outside hosts are not on this ladder.
 They put city data with an outside party. If one seems necessary, that's a
 conversation, not a default.
 
-"Internal only" does not need a server. It means the site sits behind
-something that already exists — [FILL IN: the office's answer, e.g.
-enterprise Pages, SSO in front of a static host]. Ask before building a login.
+"Internal only" does not mean you need a server. The site could sit behind
+something that already exists. Github page browsing can be restricted to user groups, an edge function with SSO integration can be placed in front of a static site via AWS or CloudFlare.
 
 ### Gate 2 — Build and framework
 
@@ -60,7 +59,7 @@ otherwise. Climb in order, stop at the first that holds:
    asset pipeline. Runs in GitHub Actions, deploys to Pages. Still no
    framework.
 3. **11ty.** Many pages that share headers, navigation, and layout, driven
-   by data that rarely changes. Templates plus data files, built to plain
+   by data that changes slowly enough that github actions can rebuild and deploy. Templates plus data files, built to plain
    HTML in Actions, served from Pages. Still a static site. (Rungs 2 and 3
    solve different problems — many modules vs. many pages. Pick the one that
    fits. You don't pass through Vite to reach 11ty.)
