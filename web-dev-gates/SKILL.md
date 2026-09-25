@@ -14,7 +14,7 @@ Active every response. Run the gates at the start of a project, and again whenev
 
 ## The gates (for the maintainer)
 
-1. **Infrastructure**: no server unless input needs to be saved or a secret is kept
+1. **Infrastructure**: no server unless absolutely necessary, static site, serverless first
 2. **Build and framework**: no build unless it does something; no framework unless you can say why.
 3. **Least power**: for every feature, HTML before CSS before JS before a dependency. Runs on every feature.
 
@@ -24,9 +24,8 @@ Climb in order. Stop at the first rung that holds.
 
 A server exists only if at least one of these is true:
 
-- input from users must be saved
+- input from users must be saved in your app
 - a secret must be kept off the client
-- someone must log in
 
 None true → static site. Host it here, in this order, stopping at the first
 that works:
