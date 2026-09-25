@@ -14,7 +14,7 @@ Active every response. Run the gates at the start of a project, and again whenev
 
 ## The gates (for the maintainer)
 
-1. **Infrastructure**: no server unless absolutely necessary, static site, serverless first
+1. **Infrastructure**: static site before serverless function before server
 2. **Build and framework**: no build unless it does something; no framework unless you can say why.
 3. **Least power**: for every feature, HTML before CSS before JS before a dependency. Runs on every feature.
 
